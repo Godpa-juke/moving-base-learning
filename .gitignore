@@ -1,0 +1,38 @@
+# Generated training and evaluation artifacts
+outputs/
+logs/
+
+# Python environments and bytecode
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Test and tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editor and local agent state
+.vscode/
+.idea/
+.claude/
+.DS_Store
+
+# Model and event artifacts, even if copied outside outputs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.tfevents*
+events.out.tfevents.*
+
+# Raw experiment/data formats
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.parquet
+*.pkl
+*.pickle
