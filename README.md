@@ -6,11 +6,11 @@ A reproducible Isaac Lab benchmark for comparing tuned model-based control and r
 
 This repository is a **code-only public artifact** for the experiments reported in the accompanying manuscript. Training data, checkpoints, TensorBoard events, evaluation dumps, internal logs, and paper working files are intentionally excluded.
 
-[![Moving-base line-tracking demo](media/demo_poster.png)](media/moving_base_line_tracking.mp4)
+[![45-degree top-down moving-base line-tracking demo](media/demo_poster.png)](media/moving_base_line_tracking.mp4)
 
 [Watch or download the MP4](media/moving_base_line_tracking.mp4)
 
-The video is a qualitative visualization of target-conditioned world-line tracking. It is not population evidence for the numerical results below; those conclusions use paired multi-seed evaluation.
+The video is a fresh 7.97-second rollout of the residual policy from a reproducible 45-degree downward oblique camera (`--camera-preset topdown-45`). The moving base, UR3, project-owned cylinder/TCP, and world-fixed target line are shown together. It is qualitative evidence only; the numerical conclusions below use paired multi-seed evaluation.
 
 ## Research question
 
@@ -161,6 +161,21 @@ scripts/evaluate.sh \
   --run-name ik_eval_seed44
 ```
 
+Render the same 45-degree top-down qualitative view with a selected checkpoint:
+
+```bash
+scripts/render.sh \
+  --controller policy \
+  --checkpoint /path/to/model.pt \
+  --task Marine-UR3-ResidualIkDelay-Play-v0 \
+  --steps 240 \
+  --seed 971 \
+  --camera-preset topdown-45 \
+  --run-name topdown45_demo
+```
+
+The renderer records the camera preset in `summary.json`. The preset satisfies the 45-degree geometry exactly: the camera's vertical offset from `lookat` equals its horizontal XY distance.
+
 Do not compare only the final checkpoint. `scripts/best_checkpoint.py` selects from the training curve, and `scripts/evaluate.py` separates initial capture from post-capture tracking. The headline metric is post-capture cross-track p95, not whole-rollout average error.
 
 ## Data policy
@@ -174,4 +189,4 @@ This snapshot does not include:
 - collected third-party papers or redistributable assets;
 - private research notes or manuscript working files.
 
-The exact export provenance is recorded in [`SNAPSHOT.md`](SNAPSHOT.md). File hashes are recorded in `MANIFEST.sha256`.
+The exact export provenance and demonstration-media receipt are recorded in [`SNAPSHOT.md`](SNAPSHOT.md).

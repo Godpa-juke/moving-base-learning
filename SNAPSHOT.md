@@ -4,7 +4,7 @@
 
 - Canonical source: private experiment tree
 - Source branch: `uvms-free-floating`
-- Source commit: `fa2a6231e18b96d5e6b5a957f58d7e8b7f023113`
+- Source commit: `21ef52136bcb453e1225dd889ee9b5dabb6493b6`
 - Snapshot purpose: public code and qualitative visualization for the accompanying manuscript
 - Git history policy: this public snapshot uses an independent history; the private canonical history is not copied
 
@@ -42,9 +42,11 @@ The source commit's target-conditioned test still expected an earlier radial-ran
 
 - Public file: `media/moving_base_line_tracking.mp4`
 - Poster: `media/demo_poster.png`
-- Source rollout: `xneg30to40cm_finalvisible_seed47-step-0.mp4`
+- Source rollout: fresh residual-policy rollout, task `Marine-UR3-ResidualIkDelay-Play-v0`, seed `971`, selected checkpoint iteration `2350`
+- Camera preset: `topdown-45` (45-degree downward oblique view)
 - Encoding: H.264, yuv420p, 1280×720, 30 fps
-- Duration: 10.97 seconds
-- Frames: 329
+- Duration: 7.97 seconds
+- Decoded frames: 239
+- Rollout receipt: captured; cross-track RMSE `8.39 mm`; post-capture cross-track p95 `12.32 mm`
 
 The media is a qualitative visualization. It is not used as population evidence for the reported multi-seed comparisons.

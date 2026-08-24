@@ -22,6 +22,12 @@ parser.add_argument("--steps", type=int, default=240)
 parser.add_argument("--seed", type=int, default=818)
 parser.add_argument("--run-name", default="fresh_smoke_rollout")
 parser.add_argument("--target-x-offset", type=float, default=0.0)
+parser.add_argument(
+    "--camera-preset",
+    choices=("default", "topdown-45"),
+    default="default",
+    help="Reproducible viewer pose; topdown-45 looks down at exactly 45 degrees.",
+)
 AppLauncher.add_app_launcher_args(parser)
 args = parser.parse_args()
 args.headless = True
@@ -55,8 +61,15 @@ try:
     env_cfg.commands.ee_pose.ranges.pos_x = (x_low + args.target_x_offset, x_high + args.target_x_offset)
     env_cfg.commands.ee_pose.debug_vis = False
     env_cfg.seed = args.seed
-    env_cfg.viewer.eye = (-1.10, 1.10, 0.80)
-    env_cfg.viewer.lookat = (-0.22, 0.0, 0.25)
+    if args.camera_preset == "topdown-45":
+        # Horizontal offset = vertical offset, hence a 45-degree downward view.
+        # The diagonal XY offset keeps the arm, moving base, target line and TCP
+        # visible at once instead of collapsing the motion into a top view.
+        env_cfg.viewer.lookat = (-0.22, 0.0, 0.25)
+        env_cfg.viewer.eye = (-1.22, 1.0, 0.25 + math.sqrt(2.0))
+    else:
+        env_cfg.viewer.eye = (-1.10, 1.10, 0.80)
+        env_cfg.viewer.lookat = (-0.22, 0.0, 0.25)
     agent_cfg = load_cfg_from_registry(args.task, "rsl_rl_cfg_entry_point")
     agent_cfg = handle_deprecated_rsl_rl_cfg(agent_cfg, metadata.version("rsl-rl-lib"))
     agent_cfg.device = args.device or "cuda:0"
@@ -202,6 +215,7 @@ try:
         "wave_frequency_scale": args.wave_frequency_scale,
         "actuation_delay_steps": args.actuation_delay_steps,
         "target_x_offset_m": args.target_x_offset,
+        "camera_preset": args.camera_preset,
         "rmse_m": math.sqrt(sum(x * x for x in errors) / len(errors)),
         "cross_track_rmse_m": math.sqrt(sum(x * x for x in cross_track_errors) / len(cross_track_errors)),
         "post_capture_cross_track_p95_m": (
