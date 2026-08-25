@@ -40,13 +40,13 @@ The source commit's target-conditioned test still expected an earlier radial-ran
 
 ## Demonstration media
 
-- Public file: `media/moving_base_line_tracking.mp4`
+- Public file: `media/moving_base_line_tracking.gif`
 - Poster: `media/demo_poster.png`
 - Source rollout: fresh residual-policy rollout, task `Marine-UR3-ResidualIkDelay-Play-v0`, seed `971`, selected checkpoint iteration `2350`
 - Camera preset: `topdown-45` (45-degree downward oblique view)
-- Encoding: H.264, yuv420p, 1280×720, 30 fps
-- Duration: 7.97 seconds
-- Decoded frames: 239
+- Encoding: looping GIF, 720×405, 12 fps
+- Duration: 7.66 seconds (initial renderer-settling frames removed)
+- Decoded frames: 92
 - Rollout receipt: captured; cross-track RMSE `8.39 mm`; post-capture cross-track p95 `12.32 mm`
 
 The media is a qualitative visualization. It is not used as population evidence for the reported multi-seed comparisons.

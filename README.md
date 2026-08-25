@@ -6,11 +6,9 @@ A reproducible Isaac Lab benchmark for comparing tuned model-based control and r
 
 This repository is a **code-only public artifact** for the experiments reported in the accompanying manuscript. Training data, checkpoints, TensorBoard events, evaluation dumps, internal logs, and paper working files are intentionally excluded.
 
-[![45-degree top-down moving-base line-tracking demo](media/demo_poster.png)](media/moving_base_line_tracking.mp4)
+![45-degree top-down moving-base line-tracking demo](media/moving_base_line_tracking.gif)
 
-[Watch or download the MP4](media/moving_base_line_tracking.mp4)
-
-The video is a fresh 7.97-second rollout of the residual policy from a reproducible 45-degree downward oblique camera (`--camera-preset topdown-45`). The moving base, UR3, project-owned cylinder/TCP, and world-fixed target line are shown together. It is qualitative evidence only; the numerical conclusions below use paired multi-seed evaluation.
+Residual-policy rollout in Isaac Lab, shown from the reproducible 45-degree downward oblique camera (`--camera-preset topdown-45`).
 
 ## Research question
 
