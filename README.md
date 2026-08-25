@@ -4,11 +4,7 @@
 
 A reproducible Isaac Lab benchmark for comparing tuned model-based control and recurrent residual reinforcement learning under exogenous six-degree-of-freedom base motion.
 
-This repository is a **code-only public artifact** for the experiments reported in the accompanying manuscript. Training data, checkpoints, TensorBoard events, evaluation dumps, internal logs, and paper working files are intentionally excluded.
-
 ![45-degree top-down moving-base line-tracking demo](media/moving_base_line_tracking.gif)
-
-Residual-policy rollout in Isaac Lab, shown from the reproducible 45-degree downward oblique camera (`--camera-preset topdown-45`).
 
 ## Research question
 
